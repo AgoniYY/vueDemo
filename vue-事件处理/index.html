@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<!-- v-on监听DOM事件，并触发时运行一些js代码 -->
+		<div id="example">
+			<!-- 把方法直接写在v-on指令中 -->
+			<!-- <button @click="counter += 1">Add</button>
+			<p>The button above has been clicked {{counter}}</p> -->
+			
+			<!-- 内联处理器中的方法 -->
+			<!-- <button type="button" @click="say('hi')">Say hi</button> -->
+			<!-- <button type="button" @click="say('what')">Say What</button> -->
+			
+			<!-- 调用方法名 -->
+			<!-- <button type="button" @click="show">点击</button> -->
+			
+			<!-- 在内联语句处理器中访问原始的DOM事件，可以使用特殊变量$event 将其传入方法 -->
+			<button @click="warn">Submit</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#example',
+			data: {
+				// counter: 0
+				name: 'vue.js'
+			},
+			methods: {
+				warn(msg, ev) {
+					// 现在我们可以访问原生事件对象
+					if(ev) ev.preventDefault()
+					alert(msg)
+				}
+				// say(msg) {
+				// 	alert(msg)
+				// }
+				// show(event) {
+				// 	alert('hello' + this.name + '!')
+				// 	// if(event) {
+				// 	// 	alert(event.target.tagName)
+				// 	// }
+				// }
+			}
+		})
+	</script>
+</html>
