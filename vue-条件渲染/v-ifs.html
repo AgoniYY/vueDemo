@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		
+		<!-- 在独立不需要复用的元素下加上key值可以重新加载这个元素 -->
+		<!-- 如：<input type="text" placeholder="Enter you Username" key='username'> 与 -->
+		<!-- <input type="text" placeholder="Enter you Email" key='email'>  -->
+		<!-- 输入框每次都会重新渲染，另外因为label没有加key所以仍会被复用 -->
+		
+		<!-- ********v-if和v-for尽量不要用在一起，因为v-for的优先级高于v-if -->
+		<div class="vif">
+			<template v-if="loginType">
+				<label>Username</label>
+				<input type="text" class="" placeholder="Enter you Username">
+			</template>
+			<template v-else>
+				<label>Email</label>
+				<input type="text" class="" placeholder="Enter you Email">
+			</template>
+			<button>Toggle</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		new Vue({
+			el: '.vif',
+			data: {
+				loginType: false
+			}
+		})
+	</script>
+</html>

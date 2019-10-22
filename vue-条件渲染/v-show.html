@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div class="v-shows">
+			<!-- 1、值  2、键  3、索引下标 -->
+			<!-- <div v-for="(item, value, index) of object" :key="index">
+				<p>{{item}}--{{value}}</p>
+			</div> -->
+			<!-- <p v-for="lists in even(list)">{{lists}}</p> -->
+			<p v-for="i of 10">{{i}}</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm =new Vue({
+			el: '.v-shows',
+			data: {
+				// object: {
+				// 	title: 'hello',
+				// 	massage: 'world',
+				// 	time: '2019-08-21'
+				// }
+				list: [ 1, 2, 3, 4, 5 ]
+			},
+			computed:{
+				// 显示一个数组经过过滤或排序后的版本,而不实际改变或重置原始数据.
+				// evenlist: function(){
+				// 	return this.list.filter(function (num) {
+				// 		return num % 2 === 0
+				// 	})
+				// }
+			},
+			methods:{
+				// 适用于嵌套v-for
+				even: function(list) {
+					return list.filter(function (num) {
+						return num % 2 === 0
+					})
+				}
+			}
+		})
+		
+		// 为已有对象赋值多个新属性,可用object.assign()或者_.extend()
+		// vm.object = Object.assign({}, vm.object, {
+		// 	age: 21,
+		// 	world: 'hello'
+		// })
+		
+		// 添加一个新的age属性到嵌套的object对象
+		// Vue.set(vm.object, 'age1', 26)
+		
+		// 需要注意的是两种方法会相互覆盖,解决办法是不同的属性
+		
+		// 实例方法,只是Vue.set的别名
+		// vm.$set(vm.object, 'age', 27)
+		// vm.object = vm.object.filter(function (items) {
+		// 	return item.massage.match(/foo/)
+		// })
+		// object.keys()方法:返回一个所有元素为字符串的数组,其元素来自于从给定的obj里可直接枚举的属性.这些属性的顺序与手动遍历该对象属性时的一致
+		
+		
+		// let obj = {1:'a',12:'b',23:'c'};
+		// console.log(Object.keys(obj)); // 返回对象属性名的字符串形式构成的数组
+		// let arr = ['a','b','c'];
+		// console.log(Object.keys(arr)); // 返回数组索引值的字符串形式构成的数组
+		// let str = 'jscsadsa';
+		// console.log(Object.keys(str)); // 返回字符串索引值的字符串形式构成的数组
+		// 
+		// let obj1 = {1:'a',2:'b',3:'c'};
+		// console.log(Object.keys(obj1));
+		// Object.keys(obj1).map((key, index) => {
+		// 	console.log(key , obj1[key], index) // key => 属性名 obj1[key] => 属性值 index => 数组索引值
+		// })
+	</script>
+</html>
