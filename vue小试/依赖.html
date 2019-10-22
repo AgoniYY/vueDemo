@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		class EventBus {
+			constructor() {
+				this._event = new Map()
+			}
+			addListener(type,fn) {
+				const handler = this._event.get(type)
+				if(!handler) {
+					this._event.set(type,fn)
+				}else if(handler && typeof handler === 'function') {
+					this._event.set(type, [handler, fn])
+				}else{
+					this._event.set(type, handler.push(fn))
+				}
+			}
+			emit(type, ...args) {
+				const handler = this._event.get(type)
+				if(handler && Array.isArray(handler)) {
+					handler.forEach(fn => {
+						if(args.length > 0) {
+							fn.apply(this,args)
+						}else{
+							fn.call(this)
+						}
+					})
+				}else{
+					if(args.length > 0) {
+						handler.apply(this.args)
+					}else{
+						handler.call(this)
+					}
+				}
+			}
+		}
+		var emitter = new EventBus()
+		emitter.addListener('put', function(name) {
+			console.log('my name is :' + name)
+		})
+		emitter.addListener('put', function(name) {
+			console.log('your name is :' + name)
+		})
+		emitter.emit('put', 'Lucy')
+	</script>
+</html>

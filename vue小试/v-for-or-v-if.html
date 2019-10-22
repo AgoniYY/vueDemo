@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<!-- <div class="or"> -->
+			<!-- <p v-for="(item, id) in items" :key="item.id" :item="item" :id="item.id" :name="item.name">
+				{{item.id}}--{{item.name}}
+			</p> -->
+			<div id="todo-list-example">
+				<form @submit.prevent="addNewTodo">		
+					<label for="new-todo">Add a todo</label>
+					<input type="text" v-model="newTodoText" id="new-todo" placeholder="E.g.Feed the cat"/>
+					<button type="submit">Add</button>
+				</form>
+				<ul>
+					<li is="todo-item" v-for="(todo, index) in todos" :key="todo.id" :title="todo.title" @remove="todos.splice(index, 1)"></li>
+				</ul>
+			</div>
+		<!-- </div> -->
+	</body>
+	<script type="text/javascript">
+		Vue.component('todo-item', {
+			template: '\
+				<li>\
+					{{ title }}\
+					<button @click="$emit(\'remove\')">Remove</button>\
+					</li>\
+			',
+			props:['title']
+		})
+		var vm = new Vue({
+			el: '#todo-list-example',
+			data: {
+				newTodoText: '',
+				todos: [
+					{
+						id: 1,
+						title: 'Do the dishes',
+					},
+					{
+						id: 2,
+						title: 'Take out the trash',
+					},
+					{
+						id: 3,
+						title: 'Mow the lawn',
+					}
+				],
+				nextTodoId: 4
+				// items: {
+				// 	msg: 'hello',
+				// 	mag: 'world'
+				// }
+				// items: [
+				// 	{
+				// 		id: 1,
+				// 		name: 'hello'
+				// 	},
+				// 	{
+				// 		id: 2,
+				// 		name: 'hello1'
+				// 	},
+				// 	{
+				// 		id: 3,
+				// 		name: 'hello2'
+				// 	},
+				// ]
+			},
+			methods: {
+				addNewTodo: function() {
+					this.todos.push({
+						id: this.nextTodoId++,
+						title: this.newTodoText
+					})
+					this.newTodoText = ''
+				}
+			}
+		})
+	</script>
+</html>

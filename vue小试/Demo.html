@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="demo">
+			<!-- 事件缓存依赖 -->
+			<!-- <p>{{msg}}</p>
+			<p>{{reversemsg}}</p>
+			<p>{{change()}}</p> -->
+			<!-- <p>{{changenow}}</p> -->
+			<!-- <p>{{fullmsg}}</p> -->
+			<p>{{ msg }}</p>
+		</div>
+	</body>
+	<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '.demo',
+			data: {
+				msg: 'hello',
+				masg: ''
+				// fullmsg: 'hello world'
+			},
+			// watch: {
+			// 	masg (newmsg, oldmsg) {
+			// 		this.msg = 'waiting for you'
+			// 	}
+			// },
+			// methods: {
+			// 	change () {
+			// 		return this.msg.split('').reverse().join('')
+			// 	}
+			// },
+			// // 计算属性: 基于响应式依赖进行缓存
+			computed: {
+				// reversemsg () {
+				// 	return this.msg.split('').reverse().join('')
+				// }
+				// fullmsg () {
+				// 	return this.msg + '' + this.masg;
+				// }
+			}
+		})
+	</script>
+</html>
